@@ -2,6 +2,9 @@
 #include <GLFW/glfw3.h>
 #include <utility>
 #include <cmath>
+#include "rectangle.hpp"
+#include "circle.hpp"
+
 
 
 int main(int argc, char* argv[])
@@ -47,6 +50,34 @@ int main(int argc, char* argv[])
     std::string text = "mouse position: (" + std::to_string(m.first) + ", " + std::to_string(m.second) + ")";
     win.draw_text(10, 5, 35.0f, text);
 
+    Rectangle r1{{200.0f, 100.0f}, {300.0f, 200.0f}};
+    if(r1.isInsideRect(Vec2{(float)m.first,(float)m.second}) == true){
+      r1.draw(win,Color{0.0,0.0,1.0});
+    }else{
+      r1.draw(win);
+    };
+
+    Rectangle r2{{295.0f, 295.0f}, {395.0f, 595.0f}, {1.0f, 0.0f, 0.0f}};
+    if(r2.isInsideRect(Vec2{(float)m.first,(float)m.second}) == true){
+      r2.draw(win,Color{0.0,0.0,1.0});
+    }else{
+      r2.draw(win);
+    };
+
+    Circle c1{{155.0f, 155.0f}, 150.0f};
+    if(c1.isInsideCirc(Vec2{(float)m.first,(float)m.second}) == true){
+      c1.draw(win,Color{0.0,0.0,1.0});
+    }else{
+      c1.draw(win);
+    };
+    
+    Circle c2{{200.0f, 400.0f}, 100.0f, 0.9f};
+    if(c2.isInsideCirc(Vec2{(float)m.first,(float)m.second}) == true){
+      c2.draw(win,Color{0.0,0.0,1.0});
+    }else{
+      c2.draw(win);
+    };
+    
     win.update();
   }
 
